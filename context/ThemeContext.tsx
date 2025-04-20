@@ -7,7 +7,12 @@ interface ThemeContextType {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined)
 
-export const ThemeProvider: React.FC = ({ children }) => {
+// Explicitly define props with children
+interface ThemeProviderProps {
+  children: React.ReactNode
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<'light' | 'dark'>('light')
 
   useEffect(() => {

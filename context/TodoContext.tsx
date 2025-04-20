@@ -29,7 +29,12 @@ interface TodoContextType {
 
 const TodoContext = createContext<TodoContextType | undefined>(undefined)
 
-export const TodoProvider: React.FC = ({ children }) => {
+// Define props interface to include children
+interface TodoProviderProps {
+  children: React.ReactNode
+}
+
+export const TodoProvider: React.FC<TodoProviderProps> = ({ children }) => {
   const [todos, setTodos] = useState<Todo[]>(() => {
     if (typeof window !== 'undefined') {
       const saved = localStorage.getItem('todos')
